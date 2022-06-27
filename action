@@ -1,0 +1,47 @@
+// filename: action.php
+
+<?php
+
+
+require '../connect/db.php';
+
+$path = "uploads/" . time() . "_" . $_FILES["image"]["name"];
+
+
+if (move_uploaded_file($_FILES["image"]["tmp_name"], "../" . $path))
+{
+    $title = $_POST["title"];
+    $descrription = $_POST["descrription"];
+    $price = $_POST["price"];
+    $catagory = $_POST["catagory"];
+
+    mysqli_query($db, "INSERT INTO `products` (`id`, `title`, `description`, `price`, `category`, `image`) VALUES (NULL, '$title', '$descrription', '$price', '$catagory', '$path')");
+
+    die("Товар добавлен");
+} else {
+    die("Error upload product image");
+}
+
+?>
+
+//filename: index.php
+
+<form action="action.php" method="post" enctype="multipart/form-data">
+        <p>Title</p>
+        <input type="text" name="title">
+        <p>Dedcrrition</p>
+        <textarea name="descrription"></textarea>
+        <p>Price</p>
+        <input type="number" name="price">
+        <p>Категории</p>
+        <select name="catagory">
+            <option>Игрушки</option>
+            <option>Хоз. товары</option>
+            <option>Продукты</option>
+        </select>
+        <p>Image</p>
+        <input type="file" name="image">
+        <br>
+        <br>
+        <button type="submit">ADD</button>
+    </form>

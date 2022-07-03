@@ -1,0 +1,19 @@
+<form action="action.php" method="post" enctype="multipart/form-data">
+        <p>Title</p>
+        <input type="text" name="title">
+        <p>Dedcrrition</p>
+        <textarea name="descrription"></textarea>
+        <p>Price</p>
+        <input type="number" name="price">
+        <p>Категории</p>
+        <select name="catagory">
+            <option>Игрушки</option>
+            <option>Хоз. товары</option>
+            <option>Продукты</option>
+        </select>
+        <p>Image</p>
+        <input type="file" name="image">
+        <br>
+        <br>
+        <button type="submit">ADD</button>
+    </form>
